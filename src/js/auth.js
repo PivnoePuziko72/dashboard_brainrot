@@ -1,12 +1,13 @@
 import { auth } from '../config/firebase.js';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
-// Проверка аутентификации
-onAuthStateChanged(auth, (user) => {
-    if (user && window.location.pathname.includes('login.html')) {
-        window.location.href = 'profile.html';
+// Валидация пароля
+function validatePassword(password) {
+    if (password.length < 6) {
+        throw new Error('Пароль должен содержать минимум 6 символов');
     }
-});
+    return true;
+}
 
 // Регистрация
 const registerForm = document.getElementById('registerForm');
@@ -17,8 +18,10 @@ if (registerForm) {
         const password = document.getElementById('password').value;
 
         try {
+            validatePassword(password);
             await createUserWithEmailAndPassword(auth, email, password);
-            window.location.href = 'profile.html';
+            localStorage.setItem('authMessage', 'Регистрация успешна!');
+            window.location.href = 'dashboard.html';
         } catch (error) {
             alert(error.message);
         }
@@ -35,7 +38,8 @@ if (loginForm) {
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            window.location.href = 'profile.html';
+            localStorage.setItem('authMessage', 'Вход выполнен успешно!');
+            window.location.href = 'dashboard.html';
         } catch (error) {
             alert(error.message);
         }

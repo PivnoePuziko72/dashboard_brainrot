@@ -37,3 +37,25 @@ input {
 .btn:hover {
     background: #0056b3;
 }
+
+.message {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.message.show {
+    opacity: 1;
+}
+
+.dashboard-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
