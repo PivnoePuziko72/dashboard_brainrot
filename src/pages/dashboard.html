@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Личный кабинет</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="../css/style.css">
+    <!-- Добавляем Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+        import { getAuth } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+    </script>
 </head>
 <body>
+    <div id="message"></div>
     <div class="dashboard-container">
-        <div id="message" class="message"></div>
-        <h1>Личный кабинет</h1>
-        <p>Добро пожаловать, <span id="userEmail"></span>!</p>
+        <h1>Салам попалам, <span id="userEmail"></span>!</h1>
         <button id="logoutBtn" class="btn">Выйти</button>
     </div>
     <script type="module" src="../js/dashboard.js"></script>
